@@ -1,0 +1,17 @@
+<mvc:View controllerName="me.conmy.track.Acti-Track.module.notes.single.SingleNoteView" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}" showNavButton="true" navButtonPress=".onNavButtonPress">
+				<content>
+					<VBox id="RootBox">
+						<Label text="{path: 'note>ID'}"></Label>
+						<HBox id="displayBox" visible="{= ${local>mode} === 'display'}">
+							<core:Fragment fragmentName="me.conmy.track.Acti-Track.module.notes.single.fragments.singleNoteDisplay" type="XML" />
+						</HBox>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,52 @@
+<mvc:View controllerName="me.conmy.track.Acti-Track.module.notes.RootView" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<Table id="note-table"
+						items="{
+							path: 'notes>/',
+							sorter: {
+								path: 'DATE',
+								decending: true
+							}
+						}">
+						<columns>
+							<Column>
+								<header>
+									<Label text='Id'></Label>
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text='Date'></Label>
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text='Note'></Label>
+								</header>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Detail" detailPress=".onColumnListItemDetailPress">
+								<cells>
+									<Text id="note-id" text="{path: 'notes>ID'}"></Text>
+									<Text id="note-date" text="{path: 'notes>DATE'}"></Text>
+									<Text id="note-note" text="{path: 'notes>NOTE'}"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<Toolbar design="transparent">
+						<ToolbarSpacer />
+						<Button type="Emphasized" text="+" press=".onNewButtonPressed"></Button>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
