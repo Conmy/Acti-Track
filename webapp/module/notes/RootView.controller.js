@@ -57,9 +57,11 @@ sap.ui.define([
 				path: sBindingPath,
 				model: "notes"
 			});
-			this.byId("idAppControl").toDetail("detailNotesPage");
+			this.byId("idAppControl").toDetail(this.createId("detailNotesPage"));
 		},
-		
+		onNavButtonPress: function() {
+			this.byId("idAppControl").toMaster(this.createId("masterNotesPage"));
+		},
 		handleOpenEditNote: function(sRecordId) {
 			console.log("Attempting navigation ", sRecordId);
 			this.getOwnerComponent().getRouter().navTo("RouteSingleNoteView", {

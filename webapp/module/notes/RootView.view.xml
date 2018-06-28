@@ -1,6 +1,6 @@
 <mvc:View controllerName="me.conmy.track.Acti-Track.module.notes.RootView" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<SplitApp id="idAppControl" initialMaster="masterNotesPage" initialDetail="detailNotesPage" >
+	<SplitApp id="idAppControl" initialMaster="masterNotesPage" initialDetail="detailNotesPage" mode="ShowHideMode" >
 		<masterPages>
 			<Page id="masterNotesPage" title="{i18n>title}" class="sapUiStdPage">
 				<content>
@@ -49,8 +49,8 @@
 			</Page>
 		</masterPages>
 		<detailPages>
-			<Page id="detailNotesPage" title="{notes>DATE}" class="sapUiStdPage"
-				>
+			<Page id="detailNotesPage" title="{notes>DATE}" class="sapUiStdPage" showNavButton="true"
+				navButtonPress="onNavButtonPress" >
 				<content>
 					<VBox id="RootBox">
 						<Label text="Note"></Label>
