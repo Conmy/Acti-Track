@@ -1,8 +1,8 @@
 <mvc:View controllerName="me.conmy.track.Acti-Track.module.notes.RootView" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<App id="idAppControl">
-		<pages>
-			<Page title="{i18n>title}">
+	<SplitApp id="idAppControl" initialMaster="masterNotesPage" initialDetail="detailNotesPage" >
+		<masterPages>
+			<Page id="masterNotesPage" title="{i18n>title}" class="sapUiStdPage">
 				<content>
 					<Table id="note-table"
 						items="{
@@ -30,7 +30,7 @@
 							</Column>
 						</columns>
 						<items>
-							<ColumnListItem type="Detail" detailPress=".onColumnListItemDetailPress">
+							<ColumnListItem type="Active" press=".onColumnListItemPress">
 								<cells>
 									<Text id="note-id" text="{path: 'notes>ID'}"></Text>
 									<Text id="note-date" text="{path: 'notes>DATE'}"></Text>
@@ -41,12 +41,32 @@
 					</Table>
 				</content>
 				<footer>
-					<Toolbar design="transparent">
+					<Toolbar>
 						<ToolbarSpacer />
-						<Button type="Emphasized" text="+" press=".onNewButtonPressed"></Button>
+						<Button type="Emphasized" text="New" press=".onNewButtonPressed"></Button>
 					</Toolbar>
 				</footer>
 			</Page>
-		</pages>
-	</App>
+		</masterPages>
+		<detailPages>
+			<Page id="detailNotesPage" title="{notes>DATE}" class="sapUiStdPage"
+				>
+				<content>
+					<VBox id="RootBox">
+						<Label text="Note"></Label>
+						<TextArea visible="{= ${mode>/MODE} === 'edit' }" value="{notes>NOTE}"></TextArea>
+						<Text visible="{= ${mode>/MODE} === 'display' }" text="{notes>NOTE}"></Text>
+					</VBox>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer />
+						<Button visible="{= ${mode>/MODE} === 'edit' }" text="Cancel" press="onCancelButtonPressed"></Button>
+						<Button visible="{= ${mode>/MODE} === 'edit' }" type="Accept" text="Save" press="onSaveButtonPressed"></Button>
+						<Button visible="{= ${mode>/MODE} === 'display' }" type="Emphasized" text="Edit" press="onEditButtonPressed"></Button>
+					</Toolbar>
+				</footer>
+			</Page>
+		</detailPages>
+	</SplitApp>
 </mvc:View>

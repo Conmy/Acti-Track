@@ -59,6 +59,9 @@
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"preload": false
+			},
+			"mode": {
+				"type": "sap.ui.model.json.JSONModel"
 			}
 		},
 		"resources": {

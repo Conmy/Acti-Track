@@ -9,6 +9,11 @@ sap.ui.define([
 		
 		onInit: function () {
 			console.log("RootView onInit");
+
+			this.oModeModel = this.getOwnerComponent().getModel("mode");
+			this.oModeModel.setData({
+				MODE: 'display'
+			});
 			this.oNotesModel = this.getOwnerComponent().getModel("notes");
 			this.oNotesModel.setData([{
 				ID: "1",
@@ -30,14 +35,29 @@ sap.ui.define([
 			console.log("RootView onAfterRendering");
 		},
 		onNewButtonPressed: function (oEvent) {
-			this.handleOpenEditNote();
+			console.log("onNewButtonPressed");
 		},
-		onColumnListItemDetailPress: function(oEvent) {
+		onEditButtonPressed: function (oEvent) {
+			console.log("onEditButtonPressed");
+			this.oModeModel.setData({
+				MODE: 'edit'
+			});
+		},
+		onCancelButtonPressed: function(oEvent) {
+			console.log("onCancelButtonPressed");
+			this.oModeModel.setData({
+				MODE: 'display'
+			});
+		},
+		onColumnListItemPress: function(oEvent) {
+			console.log("ListItemPressed");
 			// Grab the ID value from the bound model.
 			var sBindingPath = oEvent.getSource().getBindingContextPath();
-			var sRecord = this.oNotesModel.getContext(sBindingPath).getObject();
-			
-			this.handleOpenEditNote(sRecord.ID);
+			this.getView().byId("detailNotesPage").bindElement({
+				path: sBindingPath,
+				model: "notes"
+			});
+			this.byId("idAppControl").toDetail("detailNotesPage");
 		},
 		
 		handleOpenEditNote: function(sRecordId) {
