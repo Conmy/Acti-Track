@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "",
   "private": true,
+  "scripts": {
+    "start": "grunt serve",
+    "test": "grunt test"
+  },
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-cli": "^1.2.0",
